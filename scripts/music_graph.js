@@ -28,7 +28,7 @@ const legend = d3.legendColor()
     .classPrefix('legend');
 
 
-d3.json('top50.json', function (error, graph) {
+d3.json('graph.json', function (error, graph) {
     if (error) throw error;
 
     const types = d3.set(graph.edges.map(e => e.type)).values();
@@ -102,8 +102,8 @@ d3.json('top50.json', function (error, graph) {
         .attr('xlink:href', d => d.img)
         .attr('x', -25)
         .attr('y', -25)
-        .attr('width', 50)
-        .attr('height', 50)
+        .attr('width', 65)
+        .attr('height', 65)
         .on('mouseover', (d, i, nodes) => {
             svg.selectAll('.links line')
                 .transition()
@@ -120,16 +120,16 @@ d3.json('top50.json', function (error, graph) {
             d3.selectAll(nodes)
                 .classed('greyed', n => n.id !== d.id && !isAdjacent(d, n))
                 .transition().duration(200)
-                .attr('x', n => isAdjacent(d, n) ? -33 : -25)
-                .attr('y', n => isAdjacent(d, n) ? -33 : -25)
-                .attr('width', n => isAdjacent(d, n) ? 66 : 50)
-                .attr('height', n => isAdjacent(d, n) ? 66 : 50);
+                .attr('x', n => isAdjacent(d, n) ? -27 : -25)
+                .attr('y', n => isAdjacent(d, n) ? -27 : -25)
+                .attr('width', n => isAdjacent(d, n) ? 70 : 65)
+                .attr('height', n => isAdjacent(d, n) ? 70 : 65);
 
             d3.select(nodes[i])
                 .transition()
                 .duration(200)
-                .attr('x', -40)
-                .attr('y', -40)
+                .attr('x', -35)
+                .attr('y', -35)
                 .attr('width', 80)
                 .attr('height', 80);
 
@@ -161,8 +161,8 @@ d3.json('top50.json', function (error, graph) {
                 .duration(200)
                 .attr('x', -25)
                 .attr('y', -25)
-                .attr('width', 50)
-                .attr('height', 50);
+                .attr('width', 65)
+                .attr('height', 65);
 
             d3.selectAll('.legendlabel')
                 .classed('legend-hover', false);
