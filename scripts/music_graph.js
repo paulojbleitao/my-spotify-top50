@@ -12,7 +12,7 @@ const color = d3.scaleOrdinal(d3.schemeCategory20);
 
 const simulation = d3.forceSimulation()
     .force('link', d3.forceLink().id(d => d.id))
-    .force('collide', d3.forceCollide(30))
+    .force('collide', d3.forceCollide(35))
     .force('center', d3.forceCenter((width / 2), height / 2))
     .force('genreX', d3.forceX(genreX).strength(0.02))
     .force('genreY', d3.forceY(genreY));
@@ -47,10 +47,10 @@ d3.json('graph.json', function (error, graph) {
                        .filter(e => e.type === c)
                        .find(e => e.source.id === n.id || e.target.id === n.id) !== undefined;
                 })
-                .attr('x', n => -33)
-                .attr('y', n => -33)
-                .attr('width', 66)
-                .attr('height', 66);
+                .attr('x', n => -35)
+                .attr('y', n => -35)
+                .attr('width', 80)
+                .attr('height', 80);
         })
         .on('cellout', () => {
             d3.selectAll('.links line')
@@ -60,8 +60,8 @@ d3.json('graph.json', function (error, graph) {
             d3.selectAll('.node image')
                 .attr('x', n => -25)
                 .attr('y', n => -25)
-                .attr('width', 50)
-                .attr('height', 50);
+                .attr('width', 65)
+                .attr('height', 65);
         });
 
     svg.select('.category-legend')
@@ -74,7 +74,7 @@ d3.json('graph.json', function (error, graph) {
         .enter()
         .append('line')
         .style('stroke', e => color(e.type))
-        .attr('stroke-width', 1)
+        .attr('stroke-width', 1.5)
         .on('mouseover', d => {
             d3.selectAll('.legendlabel')
                 .filter(l => l === d.type)
@@ -148,7 +148,7 @@ d3.json('graph.json', function (error, graph) {
                 .transition()
                 .duration(200)
                 .attr('opacity', 1)
-                .attr('stroke-width', 1)
+                .attr('stroke-width', 1.5)
                 .style('stroke', e => color(e.type));
 
             tooltipDiv.transition()
