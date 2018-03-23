@@ -1,17 +1,5 @@
 import json
 
-def is_duplicate(tested_edge, edges):
-    for edge in edges:
-        if ((tested_edge['source'] == edge['source'] 
-            and tested_edge['target'] == edge['target']) 
-            or
-            (tested_edge['source'] == edge['target'] 
-            and tested_edge['target'] == edge['source'])):
-                return True
-
-    return False
-
-
 f = open('../mytop50.json', 'r')
 data = f.read()
 json_obj = json.loads(data)
@@ -42,7 +30,7 @@ for genre in genres:
                 'target': genres[genre][i+1],
                 'type': genre}
 
-        if not is_duplicate(edge, new_artists['edges']):
+        if len(genres[genre]) > 2 or genre in 'deep chiptune rap':
             new_artists['edges'].append(edge)
 
 
